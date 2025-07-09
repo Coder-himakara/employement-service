@@ -1,7 +1,6 @@
 package coder.himakara.employee_mangement_service.controller;
 
 import coder.himakara.employee_mangement_service.dto.DepartmentDTO;
-import coder.himakara.employee_mangement_service.exception.ApplicationException;
 import coder.himakara.employee_mangement_service.service.DepartmentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,18 +17,18 @@ public class DepartmentController {
     }
 
     @GetMapping("/all")
-    public Flux<DepartmentDTO> getAllDepartments() {
-        return this.departmentService.getAllDepartments();
+    public  Mono<ResponseEntity<Flux<DepartmentDTO>>> getAllDepartments() {
+        return  departmentService.getAllDepartments()
+                .collectList()
+                .map(users -> ResponseEntity.ok()
+                        .header("X-Total-Count", String.valueOf(users.size()))
+                        .body(Flux.fromIterable(users)));
     }
 
     @GetMapping("/{id}")
     public Mono<ResponseEntity<DepartmentDTO>> getDepartmentById(@PathVariable Integer id) {
         return this.departmentService.getDepartmentById(id)
-                .map(department -> {
-                    return ResponseEntity.ok().body(department);
-                })
-                .switchIfEmpty(ApplicationException.notFoundException("Department not found with id: " + id));
-
+                .map(department -> ResponseEntity.ok().body(department));
     }
 
     @PostMapping("/create")

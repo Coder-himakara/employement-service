@@ -1,6 +1,7 @@
 package coder.himakara.employee_mangement_service.service;
 
 import coder.himakara.employee_mangement_service.dto.DepartmentDTO;
+import coder.himakara.employee_mangement_service.exception.ApplicationException;
 import coder.himakara.employee_mangement_service.mapper.DepartmentMapper;
 import coder.himakara.employee_mangement_service.repository.DepartmentRepo;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,14 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Flux<DepartmentDTO> getAllDepartments() {
         return departmentRepo.findAll()
-                .map(departmentMapper::toDTO);
+                .map(departmentMapper::toDTO)
+                .switchIfEmpty(ApplicationException.notFoundAnyException("No departments are found"));
     }
     @Override
     public Mono<DepartmentDTO> getDepartmentById(Integer departmentId) {
         return departmentRepo.findById(departmentId)
-                .map(departmentMapper::toDTO);
+                .map(departmentMapper::toDTO)
+                .switchIfEmpty(ApplicationException.notFoundException("Department not found with id: " + departmentId));
     }
     @Override
     public Mono<DepartmentDTO> createDepartment(Mono<DepartmentDTO> departmentDTO) {
