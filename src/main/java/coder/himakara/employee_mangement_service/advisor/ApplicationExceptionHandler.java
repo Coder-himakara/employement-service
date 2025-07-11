@@ -20,4 +20,14 @@ public class ApplicationExceptionHandler {
         problem.setTitle("Resource Not Found");
         return problem;
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ProblemDetail handleRunTimeException(RuntimeException ex) {
+        var problem = ProblemDetail.forStatusAndDetail(
+                HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()
+        );
+        problem.setType(URI.create(""));
+        problem.setTitle("Internal Server Error");
+        return problem;
+    }
 }

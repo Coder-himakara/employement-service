@@ -1,9 +1,10 @@
-package coder.himakara.employee_mangement_service.service;
+package coder.himakara.employee_mangement_service.service.implementation;
 
 import coder.himakara.employee_mangement_service.dto.DepartmentDTO;
 import coder.himakara.employee_mangement_service.exception.ApplicationException;
 import coder.himakara.employee_mangement_service.mapper.DepartmentMapper;
 import coder.himakara.employee_mangement_service.repository.DepartmentRepo;
+import coder.himakara.employee_mangement_service.service.DepartmentService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

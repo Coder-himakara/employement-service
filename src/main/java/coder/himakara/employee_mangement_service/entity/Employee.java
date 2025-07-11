@@ -3,6 +3,7 @@ package coder.himakara.employee_mangement_service.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -11,6 +12,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @NoArgsConstructor
 @Table(name = "employee")
 public class Employee {
+    @Id
     private Integer employeeId;
     private String firstName;
     private String lastName;
