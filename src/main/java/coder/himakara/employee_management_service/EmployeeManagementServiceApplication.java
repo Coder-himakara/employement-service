@@ -1,13 +1,13 @@
-package coder.himakara.employee_mangement_service;
+package coder.himakara.employee_management_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EmployeeMangementServiceApplication {
+public class EmployeeManagementServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EmployeeMangementServiceApplication.class, args);
+		SpringApplication.run(EmployeeManagementServiceApplication.class, args);
 	}
 
 }

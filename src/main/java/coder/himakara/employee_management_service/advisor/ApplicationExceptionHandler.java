@@ -1,6 +1,6 @@
-package coder.himakara.employee_mangement_service.advisor;
+package coder.himakara.employee_management_service.advisor;
 
-import coder.himakara.employee_mangement_service.exception.NotFoundException;
+import coder.himakara.employee_management_service.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ControllerAdvice;

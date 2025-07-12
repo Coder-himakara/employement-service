@@ -1,10 +1,10 @@
-package coder.himakara.employee_mangement_service.service.implementation;
+package coder.himakara.employee_management_service.service.implementation;
 
-import coder.himakara.employee_mangement_service.dto.EmployeeDTO;
-import coder.himakara.employee_mangement_service.exception.ApplicationException;
-import coder.himakara.employee_mangement_service.mapper.EmployeeMapper;
-import coder.himakara.employee_mangement_service.repository.EmployeeRepo;
-import coder.himakara.employee_mangement_service.service.EmployeeService;
+import coder.himakara.employee_management_service.dto.EmployeeDTO;
+import coder.himakara.employee_management_service.exception.ApplicationException;
+import coder.himakara.employee_management_service.mapper.EmployeeMapper;
+import coder.himakara.employee_management_service.repository.EmployeeRepo;
+import coder.himakara.employee_management_service.service.EmployeeService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

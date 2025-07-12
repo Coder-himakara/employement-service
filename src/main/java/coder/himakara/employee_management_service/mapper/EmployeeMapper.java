@@ -1,7 +1,7 @@
-package coder.himakara.employee_mangement_service.mapper;
+package coder.himakara.employee_management_service.mapper;
 
-import coder.himakara.employee_mangement_service.dto.EmployeeDTO;
-import coder.himakara.employee_mangement_service.entity.Employee;
+import coder.himakara.employee_management_service.dto.EmployeeDTO;
+import coder.himakara.employee_management_service.entity.Employee;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

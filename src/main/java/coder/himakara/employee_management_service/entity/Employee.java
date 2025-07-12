@@ -1,4 +1,4 @@
-package coder.himakara.employee_mangement_service.entity;
+package coder.himakara.employee_management_service.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

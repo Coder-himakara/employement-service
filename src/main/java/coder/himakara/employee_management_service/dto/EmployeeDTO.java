@@ -1,4 +1,4 @@
-package coder.himakara.employee_mangement_service.dto;
+package coder.himakara.employee_management_service.dto;
 
 public record EmployeeDTO(Integer employeeId,
                           String firstName,

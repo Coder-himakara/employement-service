@@ -1,7 +1,7 @@
-package coder.himakara.employee_mangement_service.controller;
+package coder.himakara.employee_management_service.controller;
 
-import coder.himakara.employee_mangement_service.dto.EmployeeDTO;
-import coder.himakara.employee_mangement_service.service.EmployeeService;
+import coder.himakara.employee_management_service.dto.EmployeeDTO;
+import coder.himakara.employee_management_service.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;

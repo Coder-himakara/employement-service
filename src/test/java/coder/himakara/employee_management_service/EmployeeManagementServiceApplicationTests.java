@@ -1,10 +1,10 @@
-package coder.himakara.employee_mangement_service;
+package coder.himakara.employee_management_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EmployeeMangementServiceApplicationTests {
+class EmployeeManagementServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
