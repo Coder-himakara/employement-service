@@ -7,27 +7,30 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.net.URI;
+import java.util.function.Consumer;
 
 @ControllerAdvice
 public class ApplicationExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
     public ProblemDetail handleNotFoundException(NotFoundException ex) {
-        var problem = ProblemDetail.forStatusAndDetail(
-                HttpStatus.NOT_FOUND, ex.getMessage()
-        );
-        problem.setType(URI.create(""));
-        problem.setTitle("Resource Not Found");
-        return problem;
+        return build(HttpStatus.NOT_FOUND,ex, problem ->{
+            problem.setType(URI.create(""));
+            problem.setTitle("Resource Not Found");
+        });
     }
 
     @ExceptionHandler(RuntimeException.class)
     public ProblemDetail handleRunTimeException(RuntimeException ex) {
-        var problem = ProblemDetail.forStatusAndDetail(
-                HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()
-        );
-        problem.setType(URI.create(""));
-        problem.setTitle("Internal Server Error");
+        return build(HttpStatus.INTERNAL_SERVER_ERROR, ex,problem->{
+            problem.setType(URI.create(""));
+            problem.setTitle("Internal Server Error");
+        });
+    }
+
+    private ProblemDetail build(HttpStatus status, Exception ex, Consumer<ProblemDetail> consumer) {
+        var problem = ProblemDetail.forStatusAndDetail(status, ex.getMessage());
+        consumer.accept(problem);
         return problem;
     }
 }
