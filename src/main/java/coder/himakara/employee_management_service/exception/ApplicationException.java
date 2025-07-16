@@ -13,4 +13,8 @@ public class ApplicationException {
         return Flux.error(new NotFoundException(message));
     }
 
+    public static <T> Mono<T> incorrectKeyValueException(String message) {
+        return Mono.error(new IncorrectKeyValueException(message));
+    }
+
 }

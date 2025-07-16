@@ -1,8 +1,13 @@
 package coder.himakara.employee_management_service.dto;
 
-public record ReviewCycleResponse(Long reviewCycleId,
-                                  String cycleName,
-                                  String startDate,
-                                  String endDate,
-                                  Integer createdBy) {
+
+import java.time.LocalDate;
+
+public record ReviewCycleResponse(
+        Long reviewCycleId,
+        String cycleName,
+        LocalDate startDate,
+        LocalDate endDate,
+        Integer createdBy) {
+
 }

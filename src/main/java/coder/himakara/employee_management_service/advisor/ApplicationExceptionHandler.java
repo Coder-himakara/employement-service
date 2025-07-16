@@ -1,5 +1,6 @@
 package coder.himakara.employee_management_service.advisor;
 
+import coder.himakara.employee_management_service.exception.IncorrectKeyValueException;
 import coder.himakara.employee_management_service.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -25,6 +26,14 @@ public class ApplicationExceptionHandler {
         return build(HttpStatus.INTERNAL_SERVER_ERROR, ex,problem->{
             problem.setType(URI.create(""));
             problem.setTitle("Internal Server Error");
+        });
+    }
+
+    @ExceptionHandler(IncorrectKeyValueException.class)
+    public ProblemDetail handleIncorrectKeyValueException(IncorrectKeyValueException ex) {
+        return build(HttpStatus.BAD_REQUEST, ex,problem->{
+            problem.setType(URI.create(""));
+            problem.setTitle("Invalid Key Value");
         });
     }
 
