@@ -12,7 +12,8 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 
@@ -27,9 +28,9 @@ class DepartmentControllerTest {
 
     @Test
     void getDepartmentById() {
-        // Create a DTO instead of entity
+        // Create a mock DepartmentDTO to return
         DepartmentDTO mockDepartment = new DepartmentDTO(1, "Human Resources");
-
+        // Mock the service call to return the DTO
         when(departmentService.getDepartmentById(1))
                 .thenReturn(Mono.just(mockDepartment));
 
@@ -48,7 +49,7 @@ class DepartmentControllerTest {
     }
 
     @Test
-    void getAllDepartments(){
+    void getAllDepartments() {
         List<DepartmentDTO> mockDepartments = List.of(
                 new DepartmentDTO(1, "Human Resources"),
                 new DepartmentDTO(2, "IT operations"),
