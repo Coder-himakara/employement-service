@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -19,16 +22,16 @@ class DepartmentControllerTest {
     @Autowired
     private WebTestClient webClient;
 
-    @MockitoBean
+    @MockitoBean //@MockBean has been deprecated in favor of @MockitoBean
     private DepartmentService departmentService;
 
     @Test
     void getDepartmentById() {
         // Create a DTO instead of entity
-        DepartmentDTO department = new DepartmentDTO(1, "Human Resources");
+        DepartmentDTO mockDepartment = new DepartmentDTO(1, "Human Resources");
 
         when(departmentService.getDepartmentById(1))
-                .thenReturn(Mono.just(department));
+                .thenReturn(Mono.just(mockDepartment));
 
         webClient
                 .get()
@@ -42,6 +45,27 @@ class DepartmentControllerTest {
                     assertEquals(1, departmentDTO.departmentId());
                     assertEquals("Human Resources", departmentDTO.departmentName());
                 });
+    }
+
+    @Test
+    void getAllDepartments(){
+        List<DepartmentDTO> mockDepartments = List.of(
+                new DepartmentDTO(1, "Human Resources"),
+                new DepartmentDTO(2, "IT operations"),
+                new DepartmentDTO(3, "Finance"),
+                new DepartmentDTO(4, "Marketing")
+        );
+        when(departmentService.getAllDepartments())
+                .thenReturn(Flux.fromIterable(mockDepartments));
+
+        webClient
+                .get()
+                .uri("/api/v1/departments/all")
+                .exchange()
+                .expectStatus()
+                .is2xxSuccessful()
+                .expectBodyList(DepartmentDTO.class)
+                .hasSize(4);
     }
 
 }
