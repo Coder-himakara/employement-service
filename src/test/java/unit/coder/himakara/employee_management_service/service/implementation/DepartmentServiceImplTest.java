@@ -77,5 +77,13 @@ class DepartmentServiceImplTest {
 
     @Test
     void createDepartment() {
+        DepartmentDTO inputDTO = new DepartmentDTO(2, "Finance");
+        Department department = new Department(2, "Finance");
+        Department savedEntity = new Department(2, "Finance");
+        DepartmentDTO resultDTO = new DepartmentDTO(2, "Finance");
+
+        when(departmentMapper.toEntity(inputDTO)).thenReturn(department);
+        when(departmentRepo.save(department)).thenReturn(Mono.just(savedEntity));
+        when(departmentMapper.toDTO(savedEntity)).thenReturn(resultDTO);
     }
 }
